@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Mon Nov 23 14:30:02 2015 Ronan Boiteau
-** Last update Wed Nov 25 22:18:02 2015 Ronan Boiteau
+** Last update Wed Nov 25 23:59:10 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -18,13 +18,13 @@
 /* if (stat('./toto.txt', &sb) */
 /* static int		_recursive_print(char *dir) */
 /* { */
-/*   DIR			*dirp; */
+/*   DIR			*dir_ptr; */
 /*   struct dirent		*entry; */
 
-/*   if ((dirp = opendir(dir)) == NULL) */
+/*   if ((dir_ptr = opendir(dir)) == NULL) */
 /*     return (EXIT_FAILURE); */
 /*   else */
-/*     while ((entry = readdir(dirp)) != NULL) */
+/*     while ((entry = readdir(dir_ptr)) != NULL) */
 /*       { */
 /* 	my_putstr(entry->d_name); */
 /* 	my_putchar('\n'); */
@@ -32,13 +32,13 @@
 /*   return (EXIT_SUCCESS); */
 /* } */
 
-static void		_print_files(/* char *dir,  */DIR *dirp, char *options)
+static void		_print_files(/* char *dir,  */DIR *dir_ptr, char *options)
 {
   struct dirent		*entry;
 
   /* if (match(options, "*R*")) */
   /*   _recursive_print(dir); */
-  while ((entry = readdir(dirp)) != NULL)
+  while ((entry = readdir(dir_ptr)) != NULL)
     {
       if (my_strstr(options, "f") || my_strstr(options, "aU") ||
 	  my_strstr(options, "Ua"))
@@ -65,7 +65,7 @@ void			_iterate_args(int argc,
 				      char *options,
 				      int errors)
 {
-  DIR			*dirp;
+  DIR			*dir_ptr;
   char			*dir;
   int			idx;
   int			first_pass;
@@ -80,7 +80,7 @@ void			_iterate_args(int argc,
       if (argv[idx][0] != '-')
 	{
 	  dir = my_strdup(argv[idx]);
-	  if ((dirp = opendir(dir)) != NULL)
+	  if ((dir_ptr = opendir(dir)) != NULL)
 	    {
 	      if (first_pass == TRUE)
 		{
@@ -90,12 +90,13 @@ void			_iterate_args(int argc,
 		}
 	      else
 		my_putchar('\n');
-	      if (_count_valid_paths(argc, argv, errors) > 1)
+	      if (_count_valid_paths(argc, argv, errors) > 1 ||
+		  extra_eol == TRUE)
 		{
 		  my_putstr(dir);
 		  my_putstr(":\n");
 		}
-	      _print_files(/* dir,  */dirp, options);
+	      _print_files(/* dir,  */dir_ptr, options);
 	    }
 	  free(dir);
 	}
@@ -104,8 +105,8 @@ void			_iterate_args(int argc,
   if (first_pass == TRUE && errors == 0)
     {
       dir = my_strdup(".");
-      if ((dirp = opendir(dir)) != NULL)
-	_print_files(/* dir,  */dirp, options);
+      if ((dir_ptr = opendir(dir)) != NULL)
+	_print_files(/* dir,  */dir_ptr, options);
 
     }
   return ;
@@ -136,5 +137,6 @@ int			main(int argc, char **argv)
 ** -f
 ** -U
 **
-** make re && ./my_ls . . ausret aunrsetauir aunsriet Make* lib | cat
+** make re && ./my_ls . . ausret aunrsetauir aunsriet Make* lib
+** make re && ./my_ls Makefile .
 */
