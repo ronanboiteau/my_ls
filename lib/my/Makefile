@@ -5,13 +5,14 @@
 ## Login   <boitea_r@epitech.net>
 ## 
 ## Started on  Tue Nov 10 15:47:58 2015 Ronan Boiteau
-## Last update Tue Nov 24 20:27:56 2015 Ronan Boiteau
+## Last update Wed Nov 25 19:34:17 2015 Ronan Boiteau
 ##
 
 IDIR	= include/
 INC	= $(IDIR)my.h					\
 	  $(IDIR)my_macro.h				\
-	  $(IDIR)string.h
+	  $(IDIR)string.h				\
+	  $(IDIR)variadic.h
 
 CC	= gcc
 CFLAGS	+= -I $(IDIR)
@@ -28,16 +29,18 @@ SRCS	= $(SDIR)match.c				\
 	  $(SDIR)my_char_is/my_char_isnum.c		\
 	  $(SDIR)my_char_is/my_char_isprintable.c	\
 	  $(SDIR)my_char_is/my_char_isupper.c		\
+	  $(SDIR)my_exit.c				\
 	  $(SDIR)my_find_prime_sup.c			\
 	  $(SDIR)my_getnbr.c				\
 	  $(SDIR)my_is_prime.c				\
 	  $(SDIR)my_isneg.c				\
 	  $(SDIR)my_max_int_tab.c			\
 	  $(SDIR)my_min_int_tab.c			\
-	  $(SDIR)my_printf/my_put_nbr.c			\
-	  $(SDIR)my_printf/my_putchar.c			\
-	  $(SDIR)my_printf/my_putnbr_base.c		\
-	  $(SDIR)my_printf/my_putstr.c			\
+	  $(SDIR)my_puts/my_put_error.c			\
+	  $(SDIR)my_puts/my_put_nbr.c			\
+	  $(SDIR)my_puts/my_putchar.c			\
+	  $(SDIR)my_puts/my_putnbr_base.c		\
+	  $(SDIR)my_puts/my_putstr.c			\
 	  $(SDIR)my_power.c				\
 	  $(SDIR)my_revstr.c				\
 	  $(SDIR)my_showstr.c				\

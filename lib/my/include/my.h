@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Thu Oct  8 10:33:26 2015 Ronan Boiteau
-** Last update Tue Nov 24 20:28:23 2015 Ronan Boiteau
+** Last update Wed Nov 25 19:36:05 2015 Ronan Boiteau
 */
 
 #ifndef MY_H_
@@ -20,6 +20,7 @@ int		my_char_islower(char letter);
 int		my_char_isnum(char letter);
 int		my_char_isprintable(char letter);
 int		my_char_isupper(char letter);
+void		my_exit(int exit_code, char *args, ...);
 int		my_find_prime_sup(int nbr);
 int		my_getnbr(const char *str);
 int		my_isneg(int nbr);
@@ -34,6 +35,7 @@ unsigned int	my_putnbr_base_ull(unsigned long long nbr, const char *base);
 unsigned int	my_putnbr_double(double nbr);
 unsigned int	my_putnbr_double_fd(int fd, double nbr);
 unsigned int	my_putnbr_printf(int nbr);
+void		my_put_error(char *args, ...);
 unsigned int	my_put_nbr(int nbr);
 unsigned int	my_put_nbr_fd(int fd, int nbr);
 unsigned int	my_putstr(const char *str);
