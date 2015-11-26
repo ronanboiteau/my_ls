@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Wed Nov 25 21:15:48 2015 Ronan Boiteau
-** Last update Thu Nov 26 18:03:10 2015 Ronan Boiteau
+** Last update Thu Nov 26 19:15:39 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -42,6 +42,12 @@ static void		_arg_isfile(char *dir, int only_errors, int *extra_eol)
       while (filename[idx] && filename[idx] != '/')
 	idx -= 1;
       filename += idx + 1;
+      if ((dir_ptr = opendir(dir)) == NULL)
+      	{
+      	  if (only_errors == TRUE)
+      	    my_put_error("ssss", "ls: cannot access ", dir, filename, ": No such file or directory\n");
+      	  return ;
+      	}
     }
   else
     dir = my_strdup(".");
@@ -49,7 +55,7 @@ static void		_arg_isfile(char *dir, int only_errors, int *extra_eol)
   found = FALSE;
   while ((entry = readdir(dir_ptr)) != NULL)
     {
-      if (match(entry->d_name, filename))
+      if (match(filename, entry->d_name))
   	{
   	  if (only_errors == FALSE)
   	    {
@@ -69,7 +75,6 @@ static void		_arg_isfile(char *dir, int only_errors, int *extra_eol)
       else
   	my_put_error("sss", "ls: cannot access ", filename, ": No such file or directory\n");
     }
-  closedir(dir_ptr);
   return ;
 }
 

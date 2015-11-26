@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Sun Oct  4 00:18:09 2015 Ronan Boiteau
-** Last update Tue Nov 24 00:52:45 2015 Ronan Boiteau
+** Last update Thu Nov 26 19:16:38 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -16,6 +16,8 @@ int		match(const char *str1, const char *str2)
     return (0);
   else if ((*str1 == '\0') && (*str2 == '\0'))
     return (1);
+  else if ((*str1 == '\0') || (*str2 == '\0'))
+    return (0);
   else if (*str1 == *str2)
     return (match(str1 + 1, str2 + 1));
   else if ((*str1 == '*') || (*str2 == '*'))

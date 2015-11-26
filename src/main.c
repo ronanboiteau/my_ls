@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Mon Nov 23 14:30:02 2015 Ronan Boiteau
-** Last update Thu Nov 26 18:07:10 2015 Ronan Boiteau
+** Last update Thu Nov 26 19:20:11 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -51,7 +51,7 @@ static void		_no_option(DIR *dir_ptr)
 
   while ((entry = readdir(dir_ptr)) != NULL)
     {
-      if (!match(entry->d_name, ".*"))
+      if (entry->d_name[0] != '.')
 	{
 	  my_putstr(entry->d_name);
 	  my_putchar('\n');
@@ -62,7 +62,7 @@ static void		_no_option(DIR *dir_ptr)
 
 static void		_print_files(/* char *dir,  */DIR *dir_ptr, char *options)
 {
-  /* if (match(options, "*R*")) */
+  /* if (my_strstr(options, "R")) */
   /*   _recursive_print(dir); */
   if (my_strstr(options, "f") || my_strstr(options, "aU") ||
       my_strstr(options, "Ua") || my_strstr(options, "a"))
