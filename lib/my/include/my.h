@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Thu Oct  8 10:33:26 2015 Ronan Boiteau
-** Last update Wed Nov 25 19:36:05 2015 Ronan Boiteau
+** Last update Thu Nov 26 00:43:41 2015 Ronan Boiteau
 */
 
 #ifndef MY_H_
@@ -54,7 +54,7 @@ int		my_str_isprintable(const char *str);
 int		my_str_isupper(const char *str);
 int		my_strlen(const char *str);
 char		*my_strlowcase(char *str);
-char		*my_strncat(char *dest, const char *src, unsigned int nbr);
+char		*my_strncat(char *dest, const char *src, int nbr);
 int		my_strncmp(const char *str1,
 			   const char *str2,
 			   unsigned int nbr);

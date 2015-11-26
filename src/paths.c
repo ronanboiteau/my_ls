@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Wed Nov 25 21:15:48 2015 Ronan Boiteau
-** Last update Wed Nov 25 23:57:59 2015 Ronan Boiteau
+** Last update Thu Nov 26 18:03:10 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -53,8 +53,8 @@ static void		_arg_isfile(char *dir, int only_errors, int *extra_eol)
   	{
   	  if (only_errors == FALSE)
   	    {
-	      if (full_path == TRUE)
-		my_putstr(dir);
+  	      if (full_path == TRUE)
+  		my_putstr(dir);
   	      my_putstr(entry->d_name);
   	      my_putchar('\n');
   	      *extra_eol = TRUE;
@@ -63,7 +63,13 @@ static void		_arg_isfile(char *dir, int only_errors, int *extra_eol)
   	}
     }
   if (found == FALSE && only_errors == TRUE)
-    my_put_error("ssss", "ls: cannot access ", dir, filename, ": No such file or directory\n");
+    {
+      if (full_path == TRUE)
+  	my_put_error("ssss", "ls: cannot access ", dir, filename, ": No such file or directory\n");
+      else
+  	my_put_error("sss", "ls: cannot access ", filename, ": No such file or directory\n");
+    }
+  closedir(dir_ptr);
   return ;
 }
 
