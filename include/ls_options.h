@@ -5,13 +5,13 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Sun Nov 29 14:54:25 2015 Ronan Boiteau
-** Last update Sun Nov 29 18:49:37 2015 Ronan Boiteau
+** Last update Sun Nov 29 21:22:23 2015 Ronan Boiteau
 */
 
 #ifndef LS_OPTIONS_H_
 # define LS_OPTIONS_H_
 
-# include "ls_args.h"
+# include "ls_system.h"
 
 char		*_find_options(t_args *args);
 void		_check_options(char *given_opt);
