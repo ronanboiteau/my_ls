@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Sun Nov 29 17:15:48 2015 Ronan Boiteau
-** Last update Sun Nov 29 17:49:23 2015 Ronan Boiteau
+** Last update Sun Nov 29 18:46:39 2015 Ronan Boiteau
 */
 
 #ifndef LS_ARGS_H_
@@ -15,8 +15,7 @@ typedef struct	s_args
 {
   int		argc;
   char		**argv;
-  unsigned int	idx;
+  int		idx;
 }		t_args;
 
 #endif /* !LS_ARGS_H_ */
-
