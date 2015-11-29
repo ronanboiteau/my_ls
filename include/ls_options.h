@@ -1,11 +1,11 @@
 /*
-** ls_options.c for my_ls in /home/boitea_r
+** ls_options.h for my_ls in /home/boitea_r
 ** 
 ** Made by Ronan Boiteau
 ** Login   <boitea_r@epitech.net>
 ** 
-** Started on  Wed Nov 25 21:13:32 2015 Ronan Boiteau
-** Last update Wed Nov 25 21:13:37 2015 Ronan Boiteau
+** Started on  Sun Nov 29 14:54:25 2015 Ronan Boiteau
+** Last update Sun Nov 29 18:07:31 2015 Ronan Boiteau
 */
 
 #ifndef LS_OPTIONS_H_

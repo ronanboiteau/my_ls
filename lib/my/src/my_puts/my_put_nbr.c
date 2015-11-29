@@ -5,10 +5,11 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Tue Oct  6 09:33:53 2015 Ronan Boiteau
-** Last update Sat Nov 14 07:52:53 2015 Ronan Boiteau
+** Last update Fri Nov 27 21:05:39 2015 Ronan Boiteau
 */
 
 #include "my.h"
+#include "my_macro.h"
 
 unsigned int	my_put_nbr_fd(int fd, int nbr)
 {
@@ -39,7 +40,7 @@ unsigned int	my_put_nbr_fd(int fd, int nbr)
 
 unsigned int	my_put_nbr(int nbr)
 {
-  return (my_put_nbr_fd(1, nbr));
+  return (my_put_nbr_fd(STDOUT, nbr));
 }
 
 unsigned int	my_putnbr_printf(int nbr)

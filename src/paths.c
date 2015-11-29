@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Wed Nov 25 21:15:48 2015 Ronan Boiteau
-** Last update Thu Nov 26 19:15:39 2015 Ronan Boiteau
+** Last update Sun Nov 29 17:48:50 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -73,7 +73,7 @@ static void		_arg_isfile(char *dir, int only_errors, int *extra_eol)
       if (full_path == TRUE)
   	my_put_error("ssss", "ls: cannot access ", dir, filename, ": No such file or directory\n");
       else
-  	my_put_error("sss", "ls: cannot access ", filename, ": No such file or directory\n");
+	my_put_error("sss", "ls: cannot access ", filename, ": No such file or directory\n");
     }
   return ;
 }
@@ -95,7 +95,6 @@ int			_count_valid_paths(int argc, char **argv, int errors)
 }
 
 int			_check_args(int argc,
-
 				    char **argv,
 				    int only_errors,
 				    int *extra_eol)

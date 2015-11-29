@@ -5,7 +5,7 @@
 ## Login   <boitea_r@epitech.net>
 ## 
 ## Started on  Mon Nov 23 14:30:09 2015 Ronan Boiteau
-## Last update Thu Nov 26 17:39:20 2015 Ronan Boiteau
+## Last update Sun Nov 29 18:10:52 2015 Ronan Boiteau
 ##
 
 NAME	= my_ls
@@ -18,7 +18,7 @@ LDIR	= lib/my
 
 CC	= gcc
 CFLAGS	+= -I $(IDIR)
-#CFLAGS	+= -Wall -Werror -Wextra -ansi -fstack-protector-all -DNDEBUG
+#CFLAGS	+= -Wall -Werror -Wextra -ansi
 
 SDIR	= src/
 SRCS	= $(SDIR)main.c				\

@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Mon Nov 23 14:30:02 2015 Ronan Boiteau
-** Last update Thu Nov 26 19:20:11 2015 Ronan Boiteau
+** Last update Sun Nov 29 18:15:40 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -14,23 +14,32 @@
 #include "ls_options.h"
 #include "ls_paths.h"
 
-/* struct stat	sb; */
-/* if (stat('./toto.txt', &sb) */
-/* static int		_recursive_print(char *dir) */
+/* static void		_option_recursive(DIR *dir_ptr, char *dir) */
 /* { */
-/*   DIR			*dir_ptr; */
 /*   struct dirent		*entry; */
 
-/*   if ((dir_ptr = opendir(dir)) == NULL) */
-/*     return (EXIT_FAILURE); */
-/*   else */
-/*     while ((entry = readdir(dir_ptr)) != NULL) */
-/*       { */
-/* 	my_putstr(entry->d_name); */
-/* 	my_putchar('\n'); */
-/*       } */
-/*   closedir(dir_ptr); */
-/*   return (EXIT_SUCCESS); */
+/*   while (dir_ptr != NULL && (entry = readdir(dir_ptr)) != NULL) */
+/*     { */
+/*       if (entry->d_type == DT_DIR) */
+/*       	{ */
+/*       	  if (entry->d_name[0] != '.') */
+/*       	    { */
+/*       	      my_putchar('\n'); */
+/* 	      my_putstr(dir); */
+/* 	      if (dir[0] == '.') */
+/* 		my_putchar('/'); */
+/*       	      my_putstr(entry->d_name); */
+/*       	      my_putstr(":\n"); */
+/*       	      _option_recursive(opendir(entry->d_name), entry->d_name); */
+/*       	    } */
+/*       	} */
+/*       else if (entry->d_name[0] != '.') */
+/*       	{ */
+/*       	  my_putstr(entry->d_name); */
+/*       	  my_putchar('\n'); */
+/*       	} */
+/*     } */
+/*   return ; */
 /* } */
 
 static void		_option_all(DIR *dir_ptr)
@@ -60,11 +69,86 @@ static void		_no_option(DIR *dir_ptr)
   return ;
 }
 
-static void		_print_files(/* char *dir,  */DIR *dir_ptr, char *options)
+static int		_count_files(DIR *dir_ptr)
 {
+  struct dirent		*entry;
+  int			files;
+
+  files = 0;
+  while ((entry = readdir(dir_ptr)) != NULL)
+    files += 1;
+  return (files - 1);
+}
+
+static void		_option_reverse(DIR *dir_ptr, char *dir, int files)
+{
+  struct dirent		*entry;
+  int			idx;
+
+  idx = 0;
+  while ((entry = readdir(dir_ptr)) != NULL)
+    {
+      if (idx == files)
+  	{
+  	  if (entry->d_name[0] != '.')
+  	    {
+  	      my_putstr(entry->d_name);
+  	      my_putchar('\n');
+  	    }
+  	  _option_reverse(opendir(dir), dir, files - 1);
+  	}
+      idx += 1;
+    }
+  return ;
+}
+
+static void		_print_usr_grp(uid_t uid, gid_t gid)
+{
+  struct passwd		*usr_info;
+  struct group		*grp_info;
+
+  if ((usr_info = getpwuid(uid)) == NULL)
+    my_exit(EXIT_SERIOUS_TROUBLE, "s", "getpwuid() failed to handle uid!");
+  my_putstr(usr_info->pw_name);
+  my_putchar(' ');
+  if ((grp_info = getgrgid(gid)) == NULL)
+    my_exit(EXIT_SERIOUS_TROUBLE, "s", "getgrgid() failed to handle gid!");
+  my_putstr(grp_info->gr_name);
+  my_putchar(' ');
+  return ;
+}
+
+static void		_option_long(DIR *dir_ptr)
+{
+  struct dirent		*entry;
+  struct stat		file_info;
+
+  while ((entry = readdir(dir_ptr)) != NULL)
+    {
+      if (stat(entry->d_name, &file_info) == -1)
+	my_exit(EXIT_SERIOUS_TROUBLE, "s", "stat() failed!");
+      if (entry->d_name[0] != '.')
+	{
+	  _print_usr_grp(file_info.st_uid, file_info.st_gid);
+	  my_putstr(entry->d_name);
+	  my_putchar('\n');
+	}
+    }
+  return ;
+}
+
+static void		_print_files(char *dir, DIR *dir_ptr, char *options)
+{
+  /* _option_long(dir_ptr, dir, OPTIONS (for all)); */
+
   /* if (my_strstr(options, "R")) */
-  /*   _recursive_print(dir); */
-  if (my_strstr(options, "f") || my_strstr(options, "aU") ||
+  /*   _option_recursive(dir_ptr, dir); */
+
+  if (my_strstr(options, "l"))
+    _option_long(dir_ptr);
+  else if (my_strstr(options, "r"))
+    _option_reverse(opendir(dir), dir, _count_files(dir_ptr));
+  else if (my_strstr(options, "f") || my_strstr(options, "aU") ||
       my_strstr(options, "Ua") || my_strstr(options, "a"))
     _option_all(dir_ptr);
   else if (options == NULL)
@@ -72,7 +156,7 @@ static void		_print_files(/* char *dir,  */DIR *dir_ptr, char *options)
   return ;
 }
 
-void			_iterate_args(int argc,
+static void		_iterate_args(int argc,
 				      char **argv,
 				      char *options,
 				      int errors)
@@ -84,8 +168,8 @@ void			_iterate_args(int argc,
   int			extra_eol;
 
   extra_eol = FALSE;
-  _check_args(argc, argv, FALSE, &extra_eol);
   first_pass = TRUE;
+  _check_args(argc, argv, FALSE, &extra_eol);
   idx = 1;
   while (idx < argc)
     {
@@ -108,7 +192,7 @@ void			_iterate_args(int argc,
 		  my_putstr(dir);
 		  my_putstr(":\n");
 		}
-	      _print_files(/* dir,  */dir_ptr, options);
+	      _print_files(dir, dir_ptr, options);
 	    }
 	  closedir(dir_ptr);
 	  free(dir);
@@ -119,7 +203,7 @@ void			_iterate_args(int argc,
     {
       dir = my_strdup(".");
       if ((dir_ptr = opendir(dir)) != NULL)
-	_print_files(/* dir,  */dir_ptr, options);
+	_print_files(dir, dir_ptr, options);
       closedir(dir_ptr);
       free(dir);
     }
@@ -130,7 +214,6 @@ int			main(int argc, char **argv)
 {
   char			*options;
   int			errors;
-  int			idx;
 
   options = _find_options(argc, argv);
   _check_options(options);
@@ -142,22 +225,10 @@ int			main(int argc, char **argv)
 
 /*
 ** Currently handling:
+** -r
 ** -a
 ** -f -Ua -aU
 **
 ** Todo:
-** -Rlrtd
-** Bonus:
-** -uFg
-** -U
-** -A
-** --help
-** --directory, etc. (long options)
-**
-** SEGFAULTS:
-** ./my_ls ls/../
-** ./my_ls my_ls/../
-** ./my_ls /.ls/
-** ./my_ls *u
-** ./my_ls /dev/sda* *r
+** -Rltd
 */

@@ -5,10 +5,11 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Wed Nov 25 19:31:57 2015 Ronan Boiteau
-** Last update Wed Nov 25 19:35:32 2015 Ronan Boiteau
+** Last update Fri Nov 27 21:04:46 2015 Ronan Boiteau
 */
 
 #include "my.h"
+#include "my_macro.h"
 #include "variadic.h"
 
 void			my_exit(int exit_code, char *args, ...)
@@ -21,11 +22,11 @@ void			my_exit(int exit_code, char *args, ...)
   while (args[idx_arg])
     {
       if (args[idx_arg] == 'i')
-	my_put_nbr_fd(2, va_arg(error_msg, int));
+	my_put_nbr_fd(STDERR, va_arg(error_msg, int));
       else if (args[idx_arg] == 's')
-	my_putstr_fd(2, va_arg(error_msg, char *));
+	my_putstr_fd(STDERR, va_arg(error_msg, char *));
       else if (args[idx_arg] == 'c')
-	my_putchar_fd(2, va_arg(error_msg, int));
+	my_putchar_fd(STDERR, va_arg(error_msg, int));
       idx_arg += 1;
     }
   va_end(error_msg);

@@ -5,12 +5,13 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Wed Nov 25 21:11:14 2015 Ronan Boiteau
-** Last update Wed Nov 25 21:15:09 2015 Ronan Boiteau
+** Last update Sun Nov 29 18:09:53 2015 Ronan Boiteau
 */
 
 #include "my.h"
 #include "my_macro.h"
 #include "ls_system.h"
+#include "ls_args.h"
 
 char			*_find_options(int argc, char **argv)
 {
@@ -47,7 +48,7 @@ void			_check_options(char *given_opt)
   int			found_opt;
   char			*authorized_opt;
 
-  authorized_opt = my_strdup("aUf");
+  authorized_opt = my_strdup("aUfRrl");
   idx_given = 0;
   while (given_opt != NULL && given_opt[idx_given])
     {
@@ -60,7 +61,8 @@ void			_check_options(char *given_opt)
 	  idx_auth += 1;
 	}
       if (found_opt == FALSE)
-	my_exit(EXIT_SERIOUS_TROUBLE, "scs", "ls: invalid option -- '", given_opt[idx_given], "'\n");
+	my_exit(EXIT_SERIOUS_TROUBLE, "scs", "ls: invalid option -- '",
+		given_opt[idx_given], "'\n");
       idx_given += 1;
     }
   free(authorized_opt);
