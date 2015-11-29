@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Sun Nov 29 21:18:20 2015 Ronan Boiteau
-** Last update Sun Nov 29 21:24:50 2015 Ronan Boiteau
+** Last update Sun Nov 29 23:17:40 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -17,9 +17,7 @@
 
 static void		_print_files(char *dir, DIR *dir_ptr, char *options)
 {
-  if (my_strstr(options, "l"))
-    _option_long(dir_ptr);
-  else if (my_strstr(options, "r"))
+  if (my_strstr(options, "r"))
     _option_reverse(opendir(dir), dir, _count_files(dir_ptr));
   else if (my_strstr(options, "f") || my_strstr(options, "aU") ||
       my_strstr(options, "Ua") || my_strstr(options, "a"))
