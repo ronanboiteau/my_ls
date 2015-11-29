@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Wed Nov 25 21:17:11 2015 Ronan Boiteau
-** Last update Sun Nov 29 21:49:38 2015 Ronan Boiteau
+** Last update Sun Nov 29 23:23:43 2015 Ronan Boiteau
 */
 
 #ifndef LS_PATHS_H_
@@ -19,7 +19,7 @@ typedef struct	s_path
   char		*filename;
 }		t_path;
 
-int		_count_valid_paths(t_args *args, int only_errors);
+int		_count_valid_paths(t_args *args);
 int		_check_args(t_args *args,
 			    int only_errors,
 			    int *extra_eol);

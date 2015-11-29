@@ -5,7 +5,7 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Sun Nov 29 21:18:20 2015 Ronan Boiteau
-** Last update Sun Nov 29 23:17:40 2015 Ronan Boiteau
+** Last update Sun Nov 29 23:23:58 2015 Ronan Boiteau
 */
 
 #include "my.h"
@@ -43,11 +43,10 @@ static int		_print_extra_eol(int extra_eol,
 }
 
 static void		_print_dirname(t_args *args,
-				       int errors,
 				       int extra_eol,
 				       char *dir)
 {
-  if (_count_valid_paths(args, errors) > 1 ||
+  if (_count_valid_paths(args) > 1 ||
       extra_eol == TRUE)
     {
       my_putstr(dir);
@@ -93,7 +92,7 @@ void			_iterate_args(t_args *args,
 	  if ((dir_ptr = opendir(dir)) != NULL)
 	    {
 	      first_pass = _print_extra_eol(extra_eol, first_pass, errors);
-	      _print_dirname(args, errors, extra_eol, dir);
+	      _print_dirname(args, extra_eol, dir);
 	      _print_files(dir, dir_ptr, options);
 	    }
 	  closedir(dir_ptr);

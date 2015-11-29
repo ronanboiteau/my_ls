@@ -5,12 +5,12 @@
 ** Login   <boitea_r@epitech.net>
 ** 
 ** Started on  Sun Nov 29 21:57:21 2015 Ronan Boiteau
-** Last update Sun Nov 29 21:57:22 2015 Ronan Boiteau
+** Last update Sun Nov 29 23:23:11 2015 Ronan Boiteau
 */
 
 #include "ls_args.h"
 
-int			_count_valid_paths(t_args *args, int errors)
+int			_count_valid_paths(t_args *args)
 {
   int			idx;
   int			paths;
@@ -23,5 +23,5 @@ int			_count_valid_paths(t_args *args, int errors)
 	paths += 1;
       idx += 1;
     }
-  return (paths - errors);
+  return (paths);
 }
