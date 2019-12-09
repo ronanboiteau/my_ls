@@ -1,13 +1,3 @@
-/*
-** ls_options.h for my_ls in /home/boitea_r
-** 
-** Made by Ronan Boiteau
-** Login   <boitea_r@epitech.net>
-** 
-** Started on  Sun Nov 29 14:54:25 2015 Ronan Boiteau
-** Last update Sun Nov 29 23:17:53 2015 Ronan Boiteau
-*/
-
 #ifndef LS_OPTIONS_H_
 # define LS_OPTIONS_H_
 

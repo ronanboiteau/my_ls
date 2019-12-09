@@ -1,13 +1,5 @@
-/*
-** paths.c for my_ls in /home/boitea_r
-** 
-** Made by Ronan Boiteau
-** Login   <boitea_r@epitech.net>
-** 
-** Started on  Wed Nov 25 21:15:48 2015 Ronan Boiteau
-** Last update Sun Nov 29 22:40:19 2015 Ronan Boiteau
-*/
-
+#include <stdbool.h>
+#include <stdlib.h>
 #include "my.h"
 #include "my_macro.h"
 #include "ls_system.h"
@@ -22,10 +14,10 @@ static int		_isdir(char *dir)
   while (dir[idx])
     {
       if (dir[idx] == '/')
-	return (TRUE);
+	return (true);
       idx += 1;
     }
-  return (FALSE);
+  return (false);
 }
 
 static void		_file_not_found(int only_errors,
@@ -33,14 +25,12 @@ static void		_file_not_found(int only_errors,
 					char *filename,
 					int full_path)
 {
-  if (only_errors == TRUE)
+  if (only_errors == true)
     {
-      if (full_path == TRUE)
-  	my_put_error("ssss", "ls: cannot access ", dir, filename,
-		     ": No such file or directory\n");
+      if (full_path == true)
+  	my_dprintf(2, "ls: cannot access %s%s: No such file or directory\n", dir, filename);
       else
-	my_put_error("sss", "ls: cannot access ", filename,
-		     ": No such file or directory\n");
+	my_dprintf(2, "ls: cannot access %s: No such file or directory\n", filename);
     }
   return ;
 }
@@ -55,20 +45,19 @@ static int		_print_arg_files(t_path *path,
   struct dirent		*entry;
 
   dir_ptr = opendir(path->dir);
-  found = FALSE;
+  found = false;
   while ((entry = readdir(dir_ptr)) != NULL)
     {
       if (match(path->filename, entry->d_name))
  	{
-  	  if (only_errors == FALSE)
+  	  if (only_errors == false)
   	    {
-  	      if (full_path == TRUE)
-  		my_putstr(path->dir);
-  	      my_putstr(entry->d_name);
-  	      my_putchar('\n');
-  	      *extra_eol = TRUE;
+  	      if (full_path == true)
+  		my_printf("%s", path->dir);
+  	      my_printf("%s\n", entry->d_name);
+  	      *extra_eol = true;
   	    }
-  	  found = TRUE;
+  	  found = true;
   	}
     }
   return (found);
@@ -83,7 +72,7 @@ static void		_arg_isfile(t_path *path,
   int			idx;
   int			found;
 
-  if (full_path == TRUE)
+  if (full_path == true)
     {
       idx = my_strlen(path->dir) - 1;
       while (path->dir[idx] && path->dir[idx] != '/')
@@ -102,7 +91,7 @@ static void		_arg_isfile(t_path *path,
   else
     path->dir = my_strdup(".");
   found = _print_arg_files(path, only_errors, full_path, extra_eol);
-  if (found == FALSE && only_errors == TRUE)
+  if (found == false && only_errors == true)
     _file_not_found(only_errors, path->dir, path->filename, full_path);
 }
 

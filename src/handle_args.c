@@ -1,13 +1,5 @@
-/*
-** handle_args.c for my_ls in /home/boitea_r
-** 
-** Made by Ronan Boiteau
-** Login   <boitea_r@epitech.net>
-** 
-** Started on  Sun Nov 29 21:18:20 2015 Ronan Boiteau
-** Last update Sun Nov 29 23:23:58 2015 Ronan Boiteau
-*/
-
+#include <stdbool.h>
+#include <stdlib.h>
 #include "my.h"
 #include "my_macro.h"
 #include "ls_args.h"
@@ -31,14 +23,14 @@ static int		_print_extra_eol(int extra_eol,
 					 int first_pass,
 					 int errors)
 {
-  if (first_pass == TRUE)
+  if (first_pass == true)
     {
-      if (errors > 0 && extra_eol == TRUE)
-	my_putchar('\n');
-      first_pass = FALSE;
+      if (errors > 0 && extra_eol == true)
+	my_printf("\n");
+      first_pass = false;
     }
   else
-    my_putchar('\n');
+    my_printf("\n");
   return (first_pass);
 }
 
@@ -47,10 +39,10 @@ static void		_print_dirname(t_args *args,
 				       char *dir)
 {
   if (_count_valid_paths(args) > 1 ||
-      extra_eol == TRUE)
+      extra_eol == true)
     {
-      my_putstr(dir);
-      my_putstr(":\n");
+      my_printf("%s", dir);
+      my_printf(":\n");
     }
   return ;
 }
@@ -62,7 +54,7 @@ static void		_if_no_arg(int first_pass,
   DIR			*dir_ptr;
   char			*dir;
 
-  if (first_pass == TRUE && errors == 0)
+  if (first_pass == true && errors == 0)
     {
       dir = my_strdup(".");
       if ((dir_ptr = opendir(dir)) != NULL)
@@ -81,8 +73,8 @@ void			_iterate_args(t_args *args,
   char			*dir;
   int			extra_eol;
 
-  extra_eol = FALSE;
-  _check_args(args, FALSE, &extra_eol);
+  extra_eol = false;
+  _check_args(args, false, &extra_eol);
   args->idx = 1;
   while (args->idx < args->argc)
     {

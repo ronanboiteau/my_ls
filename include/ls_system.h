@@ -1,13 +1,3 @@
-/*
-** ls_system.h for my_ls in /home/boitea_r
-** 
-** Made by Ronan Boiteau
-** Login   <boitea_r@epitech.net>
-** 
-** Started on  Wed Nov 25 21:13:28 2015 Ronan Boiteau
-** Last update Sun Nov 29 22:07:25 2015 Ronan Boiteau
-*/
-
 #ifndef LS_SYSTEM_H_
 # define LS_SYSTEM_H_
 

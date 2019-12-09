@@ -1,13 +1,4 @@
-/*
-** option_r.c for my_ls in /home/boitea_r
-** 
-** Made by Ronan Boiteau
-** Login   <boitea_r@epitech.net>
-** 
-** Started on  Sun Nov 29 19:46:26 2015 Ronan Boiteau
-** Last update Sun Nov 29 19:46:27 2015 Ronan Boiteau
-*/
-
+#include <stdlib.h>
 #include "my.h"
 #include "ls_system.h"
 
@@ -34,8 +25,7 @@ void			_option_reverse(DIR *dir_ptr, char *dir, int files)
   	{
   	  if (entry->d_name[0] != '.')
   	    {
-  	      my_putstr(entry->d_name);
-  	      my_putchar('\n');
+  	      my_printf("%s\n", entry->d_name);
   	    }
   	  _option_reverse(opendir(dir), dir, files - 1);
   	}

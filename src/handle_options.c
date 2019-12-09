@@ -1,13 +1,5 @@
-/*
-** handle_options.c for my_ls in /home/boitea_r
-** 
-** Made by Ronan Boiteau
-** Login   <boitea_r@epitech.net>
-** 
-** Started on  Sun Nov 29 19:46:40 2015 Ronan Boiteau
-** Last update Sun Nov 29 19:46:40 2015 Ronan Boiteau
-*/
-
+#include <stdbool.h>
+#include <stdlib.h>
 #include "my.h"
 #include "my_macro.h"
 #include "ls_system.h"
@@ -29,7 +21,7 @@ char			*_find_options(t_args *args)
 				my_strlen(args->argv[args->idx]) +
 				my_strlen(options) + 1)) == NULL)
 	    {
-	      my_putstr_fd(2, "Out of memory! malloc() failed\n");
+	      my_dprintf(2, "Out of memory! malloc() failed\n");
 	      exit(EXIT_SERIOUS_TROUBLE);
 	    }
 	  if (options != NULL)
@@ -54,14 +46,14 @@ void			_check_options(char *given_opt)
   while (given_opt != NULL && given_opt[idx_given])
     {
       idx_auth = 0;
-      found_opt = FALSE;
+      found_opt = false;
       while (authorized_opt[idx_auth])
 	{
 	  if (given_opt[idx_given] == authorized_opt[idx_auth])
-	    found_opt = TRUE;
+	    found_opt = true;
 	  idx_auth += 1;
 	}
-      if (found_opt == FALSE)
+      if (found_opt == false)
 	my_exit(EXIT_SERIOUS_TROUBLE, "scs", "ls: invalid option -- '",
 		given_opt[idx_given], "'\n");
       idx_given += 1;
