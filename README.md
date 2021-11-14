@@ -14,7 +14,3 @@ Navigate to the root of the repository from your Terminal and run `make` to buil
 ## How to use my_ls?
 
 Run `./my_ls` from the root of the repository.
-
-## Author
-
-* **Ronan Boiteau** ([GitHub](https://github.com/ronanboiteau) / [LinkedIn](https://www.linkedin.com/in/ronanboiteau/))
